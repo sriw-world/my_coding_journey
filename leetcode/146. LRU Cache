@@ -1,0 +1,37 @@
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.l = []
+        self.capacity = capacity
+        
+    def get(self, key: int) -> int:
+        for index,i in enumerate(self.l):
+            if key in i:
+                value = i[key]
+                del self.l[index]
+                self.l.append({key:value})
+                return value
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        #print(self.l)
+        isexist = any(key in i for i in self.l)
+        if isexist:
+            for index,i in enumerate(self.l):
+                if key in i:                
+                    i[key] = value
+                    del self.l[index]
+                    self.l.append({key:value})
+                    break
+        else:
+            if len(self.l) < self.capacity :
+                self.l.append({key:value})
+            else:    
+                del self.l[0]
+                self.l.append({key:value})
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+
