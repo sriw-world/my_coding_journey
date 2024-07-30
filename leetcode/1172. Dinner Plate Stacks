@@ -1,0 +1,55 @@
+# Time excedded
+class DinnerPlates:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.stack = []
+
+    def push(self, val: int) -> None:
+        for ki in self.stack:
+            if len(ki) != self.capacity:
+                ki.append(val)
+                #print('push1',self.stack)
+                return
+
+        if len(self.stack) > 0  :
+            if (len(self.stack[-1])) < self.capacity:
+                self.stack[-1].append(val)
+            else:
+                self.stack.append([val])
+        else:
+            self.stack.append([val])
+        #print('push2',self.stack)
+
+    def pop(self) -> int:
+        #print('pop',self.stack)
+        while len(self.stack) >0 and len(self.stack[-1]) == 0:
+            #print('pop_while1',self.stack)
+            self.stack.pop()
+            #print('pop_while2',self.stack)
+        if len(self.stack) == 0:
+            return -1
+        if len(self.stack)> 0:
+            value = self.stack[-1].pop()
+            #print('pop_len1',self.stack)
+            return value
+            #print('pop_len2',self.stack)
+
+    def popAtStack(self, index: int) -> int:
+        if len(self.stack) - 1 >= index :
+            if len(self.stack[index])!= 0:
+                value = self.stack[index].pop()
+                #print('popAtStack',self.stack)
+                return value
+            else:
+                return -1
+        else:
+            #print(-1)
+            return -1
+
+
+# Your DinnerPlates object will be instantiated and called as such:
+# obj = DinnerPlates(capacity)
+# obj.push(val)
+# param_2 = obj.pop()
+# param_3 = obj.popAtStack(index)
