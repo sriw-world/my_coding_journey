@@ -1,0 +1,23 @@
+import sys
+sys.set_int_max_str_digits(0)
+class Solution:
+    def fact(self,n):
+        if n < 0:
+            return -1
+        if n in [0,1]:
+            return 1
+        else:
+            return n * self.fact(n-1)
+
+    def trailingZeroes(self, n: int) -> int:
+        ct = 0
+        out = str(self.fact(n))[::-1]
+        print(out)
+        for i in out:
+            print(i)
+            if i == '0':
+                ct += 1
+            else:
+                return ct
+
+        
