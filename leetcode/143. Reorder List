@@ -26,4 +26,52 @@ class Solution:
         if n%2!= 0:
             tail.val = l[n//2]
 
+#2nd soln
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mid(self,head):
+        slow = head
+        fast = head
+        while fast is not None and fast.next is not None:
+ 
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    
+    def reverse(self,head):
+        curr = head
+        prev = None
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        return prev
+
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if head is None or head.next is None:
+            return head
+        fpart = head
+        mid = self.mid(head)
+        lpart = self.reverse(mid.next)
+        mid.next = None
+
+        while lpart:
+            fpartnext = fpart.next
+            lpartnext = lpart.next
+            
+            fpart.next = lpart
+            lpart.next = fpartnext
+
+            fpart = fpartnext
+            lpart = lpartnext
+
              
