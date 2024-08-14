@@ -1,0 +1,22 @@
+
+from queue import Queue 
+def insertbinarytree(root,val):
+    if root is None:
+        rootNode = NewNode
+    else:
+        q.put(root)
+        while not q.empty():
+            for i in range(q.qsize()):
+                root = q.get()
+                if root.left is not None:
+                    q.put(root.left)
+                else:
+                    root.left = NewNode
+                    return
+                if root.right is not None:
+                    q.put(root.right)
+                else:
+                    root.right = NewNode
+                    return
+                
+                
