@@ -87,6 +87,6 @@ def deltenodebinarytree(root,data):
 
 #delete binary tree
 def delbinarytree(root):
-    root = None
+    root.data = None
     root.left = None
     root.right = None
