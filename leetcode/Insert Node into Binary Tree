@@ -63,3 +63,23 @@ def deletedeepestnodebinarytree(root,depnode):
                     return
                 else:
                     q.put(node.right)
+
+
+#delete custom node in binary tree
+from queue import Queue 
+def deltenodebinarytree(root,data):
+    if root == None:
+        return
+    else:
+        q = Queue()
+        q.put(root)
+        while not q.empty():
+            node = q.get()
+            if node.val == data:
+                getlastnode = getdeepestnodebinarytree(node)
+                node.val = getlastnode.val
+                deletedeepestnodebinarytree(root,getlastnode)
+            if node.left is not None:
+                q.put(node.left)
+            if node.right is not None:
+                q.put(node.right)
