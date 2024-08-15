@@ -11,12 +11,12 @@ def insertbinarytree(root,val):
                 if root.left is not None:
                     q.put(root.left)
                 else:
-                    root.left = NewNode
+                    root.left = NewNode(val)
                     return
                 if root.right is not None:
                     q.put(root.right)
                 else:
-                    root.right = NewNode
+                    root.right = NewNode(val)
                     return
                 
                 
