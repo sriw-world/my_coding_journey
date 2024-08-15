@@ -83,3 +83,10 @@ def deltenodebinarytree(root,data):
                 q.put(node.left)
             if node.right is not None:
                 q.put(node.right)
+
+
+#delete binary tree
+def delbinarytree(root):
+    root = None
+    root.left = None
+    root.right = None
