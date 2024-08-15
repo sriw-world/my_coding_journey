@@ -4,6 +4,7 @@ def insertbinarytree(root,val):
     if root is None:
         rootNode = NewNode
     else:
+        q = Queue()
         q.put(root)
         while not q.empty():
             for i in range(q.qsize()):
@@ -19,4 +20,21 @@ def insertbinarytree(root,val):
                     root.right = NewNode(val)
                     return
                 
-                
+
+
+from queue import Queue 
+def getdeepestnodebinarytree(root,val):
+    if root is None:
+        return
+    else:
+        q = Queue()
+        q.put(root)
+        while not q.empty():
+            root = q.get()
+            if root.left is not None:
+                q.put(root.left)
+            if root.right is not None:
+                q.put(root.right)
+        val = root.val
+        #return val
+        return root
