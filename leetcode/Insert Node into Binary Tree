@@ -21,9 +21,9 @@ def insertbinarytree(root,val):
                     return
                 
 
-
+# find deepenst node in  binary tree
 from queue import Queue 
-def getdeepestnodebinarytree(root,val):
+def getdeepestnodebinarytree(root):
     if root is None:
         return
     else:
@@ -38,3 +38,28 @@ def getdeepestnodebinarytree(root,val):
         val = root.val
         #return val
         return root
+
+#delete deepest node
+#last depth node can be found with getdeepestnodebinarytree
+from queue import Queue 
+def deletedeepestnodebinarytree(root,depnode):
+    if root == depnode:
+        root = None
+        return
+    else:
+        q = Queue()
+        q.put(root)
+        while not q.empty():
+            node = q.get()
+            if node.left is not None:
+                if node.left == depnode:
+                    node.left = None
+                    return
+                else:
+                    q.put(node.left)
+            if node.right is not None:
+                if node.right == depnode:
+                    node.right = None
+                    return
+                else:
+                    q.put(node.right)
