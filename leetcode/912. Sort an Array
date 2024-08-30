@@ -1,0 +1,72 @@
+class Solution:
+    def sort(self,nums):
+        if len(nums) > 1:
+            mid = len(nums)//2
+            larr = nums[0:mid]
+            rarr = nums[mid:]
+
+            self.sort(larr)
+            self.sort(rarr)
+            print(larr,rarr)
+
+            i = j = k = 0
+
+            while i < len(larr) and j < len(rarr):
+                if larr[i] < rarr[j]:
+                    nums[k] = larr[i]
+                    i += 1
+                else:
+                    nums[k] = rarr[j]
+                    j += 1
+                k += 1
+
+            while i < len(larr):
+                nums[k] = larr[i]
+                i += 1
+                k += 1
+            
+            while j < len(rarr):
+                nums[k] = rarr[j]
+                j += 1
+                k += 1
+                
+            print(nums)
+    def sortArray(self, nums: List[int]) -> List[int]:
+        self.sort(nums)
+        return nums
+        
+
+class Solution:
+    def sortArray(self, nums):
+        def heapify(nums, n, i):
+            smallest = i
+            left = 2 * i + 1
+            right = 2 * i + 2
+
+            if left < n and nums[left] < nums[smallest]:
+                smallest = left
+
+            if right < n and nums[right] < nums[smallest]:
+                smallest = right
+
+            if smallest != i:
+                nums[i], nums[smallest] = nums[smallest], nums[i]
+                heapify(nums, n, smallest)
+
+        def heapsort(nums):
+            n = len(nums)
+            for i in range(n // 2 - 1, -1, -1):
+                heapify(nums, n, i)
+
+            for i in range(n - 1, 0, -1):
+                print(nums)
+                nums[i], nums[0] = nums[0], nums[i]
+                heapify(nums, i, 0)
+
+            return nums.reverse()
+        heapsort(nums) 
+        return nums
+
+
+        
+        
