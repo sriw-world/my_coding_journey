@@ -1,0 +1,37 @@
+#https://leetcode.com/problems/sort-an-array/description/
+
+class Solution:
+    def sort(self,nums):
+        if len(nums) > 1:
+            mid = len(nums)//2
+            larr = nums[0:mid]
+            rarr = nums[mid:]
+
+            self.sort(larr)
+            self.sort(rarr)
+
+            i = j = k = 0
+
+            while i < len(larr) and j < len(rarr):
+                if larr[i] < rarr[j]:
+                    nums[k] = larr[i]
+                    i += 1
+                else:
+                    nums[k] = rarr[j]
+                    j += 1
+                k += 1
+
+            while i < len(larr):
+                nums[k] = larr[i]
+                i += 1
+                k += 1
+            
+            while j < len(rarr):
+                nums[k] = rarr[j]
+                j += 1
+                k += 1
+                
+            #print(nums)
+    def sortArray(self, nums: List[int]) -> List[int]:
+        self.sort(nums)
+        return nums
