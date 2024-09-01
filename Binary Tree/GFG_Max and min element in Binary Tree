@@ -1,0 +1,18 @@
+class Solution:
+    def findMax(self,root):
+        #code here
+        if root is None:
+            return float('-inf')
+        l = self.findMax(root.left)
+        r = self.findMax(root.right)
+
+        return max(l,root.data,r)
+        
+    def findMin(self,root):
+        #code here
+        if root is None:
+            return float('inf')
+        l = self.findMin(root.left)
+        r = self.findMin(root.right)
+
+        return min(l,root.data,r)
