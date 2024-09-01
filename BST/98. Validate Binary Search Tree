@@ -1,0 +1,38 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def max_node(self,root):
+        if root is None:
+            return float('-inf')
+        l = self.max_node(root.left)
+        r = self.max_node(root.right)
+        return max(l,root.val,r)
+
+    def min_node(self,root):
+        if root is None:
+            return float('inf')
+        l = self.min_node(root.left)
+        r = self.min_node(root.right)
+        return min(l,root.val,r)
+
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+        if root.left is None and root.right is None:
+            return True
+        if root.left is not None:
+            if root.val <= root.left.val or root.val <= self.max_node(root.left) :
+                return False 
+
+        if root.right is not None :
+            if root.val >= root.right.val or root.val >= self.min_node(root.right):
+                return False
+        
+        if(self.isValidBST(root.left) is False or self.isValidBST(root.right) is False):
+            return False
+            
+        return True
