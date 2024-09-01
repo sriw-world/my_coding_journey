@@ -1,0 +1,15 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        def binarysearch(nums,element,low,high):
+            if low > high :
+                return -1
+            mid = (high+low)//2
+            print(low,mid,high)
+            if element == nums[mid]:
+                return mid
+            elif element < nums[mid]:
+                return binarysearch(nums,element,low,mid-1)
+            else:
+                return binarysearch(nums,element,mid+1,high)
+                
+        return binarysearch(nums,target,0,len(nums)-1)

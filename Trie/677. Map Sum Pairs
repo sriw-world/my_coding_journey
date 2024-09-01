@@ -1,0 +1,38 @@
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.value = 0
+        self.last_digit = False
+
+class MapSum:
+
+    def __init__(self):
+        self.root = TrieNode()
+        self.map = {}
+        
+    def insert(self, key: str, val: int) -> None:
+        
+        diff = val - self.map.get(key,0) 
+        self.map[key] = val     
+        currentnode = self.root
+        currentnode.value += diff
+        for ch in key:
+            if ch not in currentnode.children:
+                currentnode.children[ch] = TrieNode()
+            currentnode = currentnode.children[ch]
+            currentnode.value += diff
+        currentnode.last_digit = True
+
+    def sum(self, prefix: str) -> int:
+        currentnode = self.root
+        for ch in prefix:
+            if ch not in currentnode.children:
+                return 0
+            currentnode = currentnode.children[ch]
+        return currentnode.value        
+
+
+# Your MapSum object will be instantiated and called as such:
+# obj = MapSum()
+# obj.insert(key,val)
+# param_2 = obj.sum(prefix)
