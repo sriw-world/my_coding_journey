@@ -24,4 +24,22 @@ class Solution:
         
 
 
+# 2nd soln
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        self.count = 0
+        self.ans = None
+        def inorder_ksmall(root,k):
+            if root is None:
+                return 
+            inorder_ksmall(root.left,k)
+            if self.count == k-1:
+                self.ans = root.val
+            self.count +=1
+
+            inorder_ksmall(root.right,k)
         
+        inorder_ksmall(root,k)
+        print(self.ans)
+        return self.ans
