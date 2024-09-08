@@ -1,0 +1,27 @@
+'''
+class Node:
+	def __init__(self, data):
+		self.data = data
+		self.next = None
+		self.prev = None
+
+'''
+#Function to insert a new node at given position in doubly linked list.
+def addNode(head, p, data):
+    # Code here
+    temp = head
+    while p > 0:
+        p -= 1
+        temp = temp.next
+    
+    next_1 = temp.next
+    
+    prev = temp
+    temp.next = Node(data)
+    temp = temp.next
+    temp.prev = prev
+    if next_1 is not None:
+        temp.next = next_1
+        next_1.prev = temp
+    
+    return head
