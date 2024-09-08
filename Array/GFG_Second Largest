@@ -1,0 +1,41 @@
+T - O(n)
+S - O(1)
+#User function Template for python3
+class Solution:
+    def print2largest(self, arr):
+        
+        if len(arr) == 0 or len(arr) == 1:
+            return -1
+        # Code Here
+        lar  = arr[0]
+        lar2 = float('-inf')
+        
+        for i in arr[1:]:
+            lar = max(i,lar)
+            
+        for i in arr:
+            if i != lar:
+                lar2 = max(i,lar2)
+         
+        if  lar2 == float('-inf'):
+            return -1
+            
+        return lar2
+		
+		
+class Solution:
+    def print2largest(self, arr):
+        
+        if len(arr) == 0 or len(arr) == 1:
+            return -1
+        n = len(arr)
+        large = float('-inf')
+        second_large = float('-inf')
+        for i in range(n):
+            if (arr[i] > large):
+                second_large = large
+                large = arr[i]
+            elif (arr[i] > second_large and arr[i] != large):
+                second_large = arr[i]
+        return second_large
+        
