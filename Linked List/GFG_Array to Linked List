@@ -1,0 +1,16 @@
+class Solution:
+    def constructLL(self, arr):
+        # code here
+        if len(arr) == 0:
+            return None
+        head = None
+        temp = None
+        
+        for val in arr:
+            if head is None:
+                head = Node(val)
+                temp = head
+            else:
+                temp.next = Node(val)
+                temp = temp.next
+        return head
