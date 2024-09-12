@@ -1,0 +1,46 @@
+
+'''
+
+class Node:
+    def __init__(self, data):   # data -> value stored in node
+        self.data = data
+        self.next = None
+'''
+
+class Solution:
+    def length(self,head):
+        c = 0
+        while head:
+            c+=1
+            head = head.next
+        return c
+            
+    def addOne(self,head):
+        #Returns new head of linked List.
+        curr = head
+        st = ''
+        while curr:
+            st += str(curr.data)
+            curr = curr.next
+        
+        st = str(int(st) + 1)
+        idx = 0
+        curr = head
+        if self.length(head) == len(st):
+            while curr:
+                curr.data = st[idx]
+                idx += 1
+                curr = curr.next
+            return head
+        else:
+            new_head = Node(st[idx])
+            temp = new_head
+            idx += 1
+            temp.next = head
+            temp = temp.next
+            while temp:
+                temp.data = st[idx]
+                idx += 1
+                temp = temp.next
+            return new_head
+    

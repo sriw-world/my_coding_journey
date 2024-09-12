@@ -1,0 +1,23 @@
+class Solution:
+    def delete_node(self, head, x):
+        
+        if x == 1:
+            head = head.next
+            head.prev = None
+            return head
+            
+        prev = None
+        current = head
+        x = x-1
+        while x > 0:
+            prev = current
+            current = current.next
+            x -= 1
+        
+        prev.next = current.next
+        
+        if current.next is not None:
+            current  = current.next
+            current.prev = prev
+            
+        return head
