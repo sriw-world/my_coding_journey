@@ -1,0 +1,63 @@
+'''
+# Node Class
+	class Node:
+	    def __init__(self, data):   # data -> value stored in node
+	        self.data = data
+	        self.next = None
+	        self.prev = None
+'''
+class Solution:
+    #Function to delete all the occurances of a key from the linked list.
+    def deleteAllOccurOfX(self, head, x):
+        # code here
+        # edit the linked list
+        tempnode = Node(-1)
+        temp = tempnode
+        curr = head
+        while curr:
+            if curr.data  != x:
+                temp.next = curr
+                temp = temp.next
+        
+            curr = curr.next
+            
+        temp.next = curr
+        return tempnode.next
+		
+		
+###########################
+
+'''
+# Node Class
+	class Node:
+	    def __init__(self, data):   # data -> value stored in node
+	        self.data = data
+	        self.next = None
+	        self.prev = None
+'''
+class Solution:
+    def delete(self,head,curr):
+        
+        if curr == head :
+            head = head.next
+            return head
+        
+        
+        curr.prev.next = curr.next
+        if curr.next is not None:
+            curr.next.prev = curr.prev
+        
+        return head
+        
+        
+    #Function to delete all the occurances of a key from the linked list.
+    def deleteAllOccurOfX(self, head, x):
+        
+        curr = head
+        
+        while curr:
+            if curr.data == x:
+                head = self.delete(head,curr)
+            curr = curr.next
+            
+        return head

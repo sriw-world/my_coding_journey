@@ -1,0 +1,62 @@
+
+'''
+# Node Class
+		class Node:
+		    def __init__(self, data):   # data -> value stored in node
+		        self.data = data
+		        self.next = None
+		        self.prev = None
+'''
+class Solution:
+    def delete(self,curr):
+        curr.prev.next = curr.next
+        if curr.next is not None:
+            curr.next.prev = curr.prev
+        
+    #Function to remove duplicates from unsorted linked list.
+    def removeDuplicates(self, head):
+        # code here
+        # return head after editing list
+        if head.next is None:
+            return head
+        
+        curr = head
+        curr = curr.next
+        
+        while curr:
+            if curr.prev.data == curr.data:
+                self.delete(curr)
+                
+            curr = curr.next
+            
+        return head
+        
+        
+
+'''
+# Node Class
+		class Node:
+		    def __init__(self, data):   # data -> value stored in node
+		        self.data = data
+		        self.next = None
+		        self.prev = None
+'''
+class Solution:
+    #Function to remove duplicates from unsorted linked list.
+    def removeDuplicates(self, head):
+        # code here
+        # return head after editing list
+        newnode = Node(-1)
+        l = []
+        temp = newnode
+        while head:
+            if head.data not in l:
+                l.append(head.data)
+                temp.next = head
+                temp = temp.next
+            head = head.next
+            
+        return newnode.next
+        
+        
+
