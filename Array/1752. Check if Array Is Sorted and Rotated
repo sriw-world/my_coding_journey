@@ -1,0 +1,25 @@
+class Solution:
+    def check(self, nums: List[int]) -> bool:
+        if len(nums) <= 1:
+            return True
+        idx = 1
+        while idx < len(nums):
+            if nums[idx-1] > nums[idx]:
+                break
+            idx += 1
+
+        nums = nums[idx:] + nums[:idx]
+		
+        '''
+        if nums == sorted(nums):
+            return True
+        return False
+        '''
+		
+        idx = 1
+        while idx < len(nums):
+            if nums[idx-1] > nums[idx]:
+                return False
+            idx += 1
+        return True
+        
