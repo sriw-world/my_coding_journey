@@ -1,0 +1,13 @@
+class Solution:
+    def preToPost(self, pre_exp):
+        # Code here
+        
+        stack = []
+        
+        for ch in pre_exp[::-1]:
+            if ('a' <= ch <= 'z') or ('A' <= ch <= 'Z') or ('0' <= ch <= '9'):
+                stack.append(ch)
+            else:
+                s = stack.pop() + stack.pop() + ch
+                stack.append(s)
+        return stack.pop()

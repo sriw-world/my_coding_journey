@@ -1,0 +1,16 @@
+class Solution:
+    def postToPre(self, post_exp):
+        # Code here
+        stack = []
+        
+        for ch in post_exp:
+            if ('a' <= ch <= 'z') or ('A' <= ch <= 'Z') or ('0' <= ch <= '9'):
+                stack.append(ch)
+            else:
+                pop1 = stack.pop()
+                pop2 = stack.pop()
+                
+                s = ch + pop2 + pop1 
+                stack.append(s)
+                
+        return stack.pop()
