@@ -1,0 +1,36 @@
+class Solution:
+    def prec(self,char):
+        if char == '^':
+            return 3
+        elif char == '/' or char == '*':
+            return 2
+        elif char == '+' or char == '-':
+            return 1
+        else:
+            return -1
+    
+    #Function to convert an infix expression to a postfix expression.
+    def InfixtoPostfix(self, exp):
+        #code here
+        result = ''
+        stack = []
+        
+        for ch in exp:
+            if ('a' <= ch <= 'z') or ('A' <= ch <= 'Z') or ('0' <= ch <= '9'):
+                result += ch
+            elif ch == '(':
+                stack.append(ch)
+            elif ch == ')':
+                while len(stack) != 0 and stack[-1] != '(':
+                    result += stack.pop()
+                stack.pop()
+            elif len(stack) != 0 and (self.prec(ch) <= self.prec(stack[-1])):
+                while len(stack) != 0 and (self.prec(ch) <= self.prec(stack[-1])):
+                    result += stack.pop()
+                stack.append(ch)
+            else:
+                stack.append(ch)
+            #print(result)
+        while len(stack) != 0:
+            result += stack.pop()
+        return result

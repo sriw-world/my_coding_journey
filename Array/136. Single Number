@@ -1,0 +1,28 @@
+##Sol 1
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        d = {}
+        for no in nums:
+            d[no] = d.get(no,0)+1
+        
+        for key in d:
+            if d[key] == 1:
+                return key
+        
+        
+###soln 2
+'''
+Two important properties of XOR are the following:
+
+XOR of two same numbers is always 0 i.e. a ^ a = 0. ←Property 1.
+XOR of a number with 0 will result in the number itself i.e. 0 ^ a = a.  ←Property 2
+'''
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        xor = 0
+        for no in nums:
+            xor = xor ^ no
+        return xor
+        
+        
+        

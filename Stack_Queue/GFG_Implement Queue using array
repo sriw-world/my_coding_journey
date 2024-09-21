@@ -1,0 +1,22 @@
+class MyQueue:
+    def __init__(self):
+        self.arr = []
+        self.start = 0
+        self.end = 0
+    
+    #Function to push an element x in a queue.
+    def push(self, x):
+         #add code here
+        self.arr.append(x)
+        self.end += 1
+        #print(self.arr)
+     
+    #Function to pop an element from queue and return that element.
+    def pop(self):
+        # add code here
+        if self.start == self.end :
+            return -1
+        else:
+            no = self.arr[self.start]
+            self.start +=1
+            return no
