@@ -1,0 +1,26 @@
+#User function Template for python3
+
+class Solution:
+    def lenOfLongSubarr (self, arr, n, k) : 
+        
+        premap = {}
+        maxlen = 0
+        sum1 = 0
+        
+        for i in range(n):
+            sum1 += arr[i]
+            if sum1 == k:
+                maxlen = max(maxlen,i+1)
+                
+            rem = sum1 - k
+            if rem in premap:
+                length = i - premap[rem]
+                maxlen = max(maxlen,length)
+            
+            if sum1 not in premap :
+                premap[sum1] = i
+        
+        return maxlen
+            
+    
+
