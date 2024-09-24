@@ -1,0 +1,33 @@
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        d = {}
+        for i in nums:
+            if i == 0:
+                d[i] = d.get(i,0)+1
+            if i == 1:
+                d[i] = d.get(i,0)+1
+            if i == 2:
+                d[i] = d.get(i,0)+1
+        print(d)
+        i = 0
+        if 0 in d:
+            while d[0] > 0 :
+                nums[i] = 0
+                d[0] -= 1
+                i += 1
+            print(i,nums)
+        if 1 in d:
+            while d[1] > 0 :
+                nums[i] = 1
+                d[1] -= 1
+                i += 1
+            print(i,nums)
+        if 2 in d:
+            while d[2] > 0 :
+                nums[i] = 2
+                d[2] -= 1
+                i += 1
+            print(i,nums)
