@@ -1,0 +1,19 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        l = []
+        
+        def permutations(nums,f,l):
+            if f >= len(nums):
+        
+                l.append(nums[:])
+                return
+
+            for s in range(f,len(nums)):
+                nums[f],nums[s] = nums[s],nums[f]
+                permutations(nums,f+1,l)
+                nums[s],nums[f] = nums[f],nums[s]
+        
+        permutations(nums,0,l)
+        return(l)
+        
+        

@@ -1,0 +1,21 @@
+O(n) , O(n)
+class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        pl = []
+        nl = []
+
+        for no in nums:
+            if no < 0:
+                nl.append(no)
+            else:
+                pl.append(no)
+        
+        i = j = 0
+        while i < len(nums):
+            nums[i] = pl[j]
+            i += 1
+            nums[i] = nl[j]
+            i+=1
+            j+=1
+        return nums
+        
