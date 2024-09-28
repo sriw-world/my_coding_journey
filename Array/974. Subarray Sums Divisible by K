@@ -1,0 +1,18 @@
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        d = {0:1}
+        c = 0
+        prefix_sum = 0
+        for i in range(len(nums)):
+            prefix_sum += nums[i]
+            modu = prefix_sum % k
+
+            if modu in d:
+                c += d[modu]
+                d[modu] += 1
+            if modu not in d:
+                d[modu] = 1
+
+        return c
+
+        
