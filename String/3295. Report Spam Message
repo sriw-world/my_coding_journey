@@ -1,0 +1,11 @@
+class Solution:
+    def reportSpam(self, message: List[str], bannedWords: List[str]) -> bool:
+        c = 0
+        banned = set(bannedWords)
+        for word in message:
+            if word in banned:
+                c+=1
+            if c == 2:
+                return True
+        return False
+        
