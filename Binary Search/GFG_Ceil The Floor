@@ -1,0 +1,48 @@
+
+class Solution:
+    def getFloorAndCeil(self, x: int, arr: list) -> list:
+        # code here
+        def floor( nums, target) -> int:
+            left = 0
+            right = len(nums) - 1
+            nums.sort()
+            while left <= right:
+                mid = (left + right) // 2
+    
+                if nums[mid] == target:
+                    return mid
+                elif nums[mid] > target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            return right if left > 0 else -1
+        
+        def ceil( nums, target):
+            left = 0
+            right = len(nums) - 1
+            nums.sort()
+            while left <= right:
+                mid = (left + right) // 2
+    
+                if nums[mid] == target:
+                    return mid
+                elif nums[mid] > target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            
+            return left if left < len(arr) else -1
+        
+        f= floor(arr,x)
+        if f == -1:
+            f = -1
+        else:
+            f = arr[f]
+        c = ceil(arr,x)
+        if c == -1:
+            c = -1
+        else:
+            c = arr[c]
+        
+        return [f,c]
+        return [f,c]
