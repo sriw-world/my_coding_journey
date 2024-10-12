@@ -1,0 +1,30 @@
+class Solution:
+    def splitArray(self, nums: List[int], k: int) -> int:
+        def possible(nums,opt_sum,k):
+            cnt = 1
+            crt_sum = 0
+
+            for no in nums:
+                if crt_sum + no <= opt_sum:
+                    crt_sum += no
+                else:
+                    cnt += 1
+                    crt_sum = no
+            return cnt
+            
+    
+        if len(nums) < k:
+            return -1
+        low = max(nums)
+        high = sum(nums)
+
+        while low <= high:
+            opt_sum = (low+high)//2
+            cnt = possible(nums,opt_sum,k)
+            if cnt > k:
+                low = opt_sum + 1
+            else:
+                high = opt_sum - 1
+        
+        return low
+        

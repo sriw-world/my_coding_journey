@@ -1,0 +1,31 @@
+def findLargestMinDistance(boards:list, k:int):
+    # Write your code here
+    # Return an integer
+    def possible(boards,opt_sum,k):
+            cnt = 1
+            crt_sum = 0
+
+            for no in boards:
+                if crt_sum + no <= opt_sum:
+                    crt_sum += no
+                else:
+                    cnt += 1
+                    crt_sum = no
+            return cnt
+            
+    
+    if len(boards) < k:
+        return -1
+    low = max(boards)
+    high = sum(boards)
+
+    while low <= high:
+        opt_sum = (low+high)//2
+        cnt = possible(boards,opt_sum,k)
+        if cnt > k:
+            low = opt_sum + 1
+        else:
+            high = opt_sum - 1
+    
+    return low
+        
