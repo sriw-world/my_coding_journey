@@ -1,0 +1,25 @@
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        def possible(weights,opt_weight,days):
+            total_ = 0
+            cnt = 1
+            for weight in weights:
+                if total_+ weight <= opt_weight:
+                    total_ += weight
+                else:
+                    total_ = weight
+                    cnt += 1
+            return cnt
+            
+        low = max(weights)
+        high = sum(weights)
+
+        while low <= high:
+            opt_weight = (low+high)//2
+            if possible(weights,opt_weight,days) <= days:
+                high = opt_weight - 1
+            else: 
+                low = opt_weight + 1
+        return low
+
+T(0) = O(n*logn)

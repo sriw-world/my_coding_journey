@@ -1,0 +1,31 @@
+class Solution:
+    def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
+        def possible(bloomDay,days,m,k):
+            cnt = 0
+            nod = 0
+            for no in bloomDay:
+                if no <= days:
+                    cnt += 1
+                else:
+                    nod += cnt//k
+                    cnt = 0
+            nod += cnt//k
+            return nod>= m
+        
+        if m*k > len(bloomDay):
+            return -1
+
+        low = min(bloomDay)
+        high = max(bloomDay)
+
+        while low <= high:
+            days = (low+high)//2
+            if possible(bloomDay,days,m,k):
+                high = days - 1
+            else:
+                low = days + 1
+        
+        return low
+
+
+T(0) = O(n*logn)
