@@ -1,0 +1,39 @@
+O(n+logm)
+class Solution:
+    def findPeakGrid(self, mat: List[List[int]]) -> List[int]:
+        def peakrow(mat,mid):
+            row = -1
+            maxele = float('-inf')
+            for i in range(len(mat)):
+                if mat[i][mid] > maxele:
+                    maxele = mat[i][mid]
+                    row = i
+            return row
+        
+        n = len(mat)
+        m = len(mat[0])
+        low = 0
+        high = m - 1
+
+        while low <= high:
+            mid = (low+high)//2
+            row = peakrow(mat,mid)
+            left = -1
+            right = -1
+            if  mid - 1 >= 0:
+                left = mat[row][mid-1]
+            if mid + 1 < m:
+                right = mat[row][mid+1]
+            if (mat[row][mid] > left) and (mat[row][mid] > right ):
+                return [row,mid]
+            elif mat[row][mid] > right :
+                high = mid - 1
+            else:
+                low = mid + 1
+        return [-1,-1]
+
+
+
+
+            
+        
