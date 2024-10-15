@@ -1,0 +1,16 @@
+#  
+class Solution:
+    def removeOuterParentheses(self, s: str) -> str:
+        cnt = 0
+        out = ""
+        for paran in s:
+            if paran =='(':
+                cnt += 1
+            else:
+                cnt -= 1
+
+            if paran == '(' and cnt > 1:
+                out += paran
+            elif paran == ')' and cnt > 0 :
+                out += paran
+        return out
