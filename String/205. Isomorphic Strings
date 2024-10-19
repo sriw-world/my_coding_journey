@@ -1,0 +1,18 @@
+'''
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+'''
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        d1 = {}
+        d2 = {}
+        for c1,c2 in zip(s,t):
+            if c1 not in d1:
+                d1[c1] = c2
+            if c2 not in d2:
+                d2[c2] = c1
+            if d1[c1] != c2 or d2[c2] != c1:
+                    return False
+        return True
+        

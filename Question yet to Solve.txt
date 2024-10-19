@@ -17,3 +17,8 @@ GFG Largest BST
 
 Linked List
 Flattening a Linked List
+
+String
+Count number of substrings
+1781. Sum of Beauty of All Substrings
+5. Longest Palindromic Substring

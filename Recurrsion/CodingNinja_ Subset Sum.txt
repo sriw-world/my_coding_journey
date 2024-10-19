@@ -1,0 +1,31 @@
+from typing import *
+
+def isSubsetPresent(n:int, k: int, a: List[int]) -> bool:
+    # Write your code here.
+    def subnetsum(a,n,k,s,index):
+        if s > k :
+            return False
+        if index == n :
+            if s == k:
+                return True
+            else:
+                return False
+
+    
+        s += a[index]
+        if subnetsum(a,n,k,s,index+1):
+            return True
+
+        s -= a[index]
+        if subnetsum(a,n,k,s,index+1):
+            return True
+        
+        return False
+
+    s = 0
+    index = 0
+    n = len(a)
+    return subnetsum(a,n,k,s,index)
+	
+	
+	

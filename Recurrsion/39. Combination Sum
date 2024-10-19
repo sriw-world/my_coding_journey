@@ -1,0 +1,30 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+
+        def subsetsum(candidates,n,index,target,s,out,ds):
+            if s > target or  index == n:
+                return
+            if s == target:
+                if ds[:] not in out:
+                    out.append(ds[:])
+                return
+
+            s += candidates[index]
+            ds.append(candidates[index])
+            subsetsum(candidates,n,index,target,s,out,ds)
+
+            s -= candidates[index]
+            ds.pop()
+            subsetsum(candidates,n,index+1,target,s,out,ds)
+
+        index = 0
+        s = 0
+        out = []
+        n = len(candidates)
+        ds = []
+        subsetsum(candidates,n,index,target,s,out,ds)
+        return out
+                
+
+
+        

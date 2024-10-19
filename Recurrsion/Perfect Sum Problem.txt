@@ -1,0 +1,98 @@
+o(2^n)
+class Solution:
+	def perfectSum(self, arr, n, sum):
+	    
+	    def subsetSum(arr,i,s,sum,n):
+	        if (i == n):
+    	        if s == sum:
+    	            return 1
+    	        else:
+    	            return 0
+		    
+		    s += arr[i]
+		    l = subsetSum(arr,i+1,s,sum,n)
+		    
+		    s -= arr[i] 
+		    r = subsetSum(arr,i+1,s,sum,n)
+		    
+		    return l+r
+		    
+        return subsetSum(arr,0,0,sum,len(arr))
+
+
+
+
+class Solution:
+	def perfectSum(self, arr, n, sum):
+	    
+	    def subsetSum(arr, n, i,sum, count):
+     
+            if (i == n):
+
+                if (sum == 0):
+                    count += 1
+                return count
+
+            count = subsetSum(arr, n, i + 1, sum - arr[i], count)
+            count = subsetSum(arr, n, i + 1, sum, count)
+            return count
+		    
+        return subsetSum(arr, len(arr), 0, sum, 0)
+		
+		
+####variation 1 Print all Sq which sums to K
+
+class Solution:
+	def perfectSum(self, arr, n, sum):
+	    
+	    def subsetSum(arr,i,s,sum,n,ds):
+	        if s > sum:
+	            return 0
+	        if (i == n):
+    	        if s == sum:
+    	            print(ds)
+    	            return 1
+    	        else:
+    	            return 0
+		    
+		    s += arr[i]
+		    ds.append(arr[i])
+		    l = subsetSum(arr,i+1,s,sum,n,ds)
+		    
+		    s -= arr[i] 
+		    ds.pop()
+		    r = subsetSum(arr,i+1,s,sum,n,ds)
+		    
+		    return l+r
+		
+		
+        return subsetSum(arr,0,0,sum,len(arr),[])
+		
+###### variation 2 Print only 1st Sq which sums to K
+
+class Solution:
+	def perfectSum(self, arr, n, sum):
+	    
+	    def subsetSum(arr,i,s,sum,n,ds):
+	        if s > sum:
+	            return 0
+	        if (i == n):
+    	        if s == sum and flag == False:
+					flag = True
+    	            print(ds)
+    	            return 1
+    	        else:
+    	            return 0
+		    
+		    s += arr[i]
+		    ds.append(arr[i])
+		    l = subsetSum(arr,i+1,s,sum,n,ds)
+		    
+		    s -= arr[i] 
+		    ds.pop()
+		    r = subsetSum(arr,i+1,s,sum,n,ds)
+		    
+		    return l+r
+		
+		flag = False
+        return subsetSum(arr,0,0,sum,len(arr),[])

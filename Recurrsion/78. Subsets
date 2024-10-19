@@ -1,0 +1,7 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        l = [[]]
+        for ch in nums:
+            l += [i+[ch] for i in l]
+        return l
+        

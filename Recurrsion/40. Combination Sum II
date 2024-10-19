@@ -1,0 +1,25 @@
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        
+        def subsetsum(index,s,ds):
+            if s == target:
+                out.append(ds[:])
+                return
+            if s > target or index == len(candidates):
+                return
+
+            ds.append(candidates[index])
+            subsetsum(index+1,s + candidates[index],ds)
+            ds.pop()
+			#skip candidates with similar value
+            while index+1 < len(candidates) and candidates[index] == candidates[index+1]:
+                index += 1
+            subsetsum(index+1,s,ds)
+
+        index = 0
+        s = 0
+        out = []
+        ds = []
+        candidates.sort()
+        subsetsum(index,s,ds)
+        return out
