@@ -1,0 +1,21 @@
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        def sum_subset(ds,index,s):
+            if index == len(nums):
+                out.append(ds[:])
+                return
+            ds.append(nums[index])
+            sum_subset(ds,index+1,s+nums[index])
+            ds.pop()
+            while index + 1 < len(nums) and nums[index] == nums[index+1]:
+                index +=  1
+            sum_subset(ds,index+1,s)
+            
+            
+        out = []
+        s = 0
+        index = 0
+        ds = []
+        nums.sort()
+        sum_subset(ds,index,s)
+        return out

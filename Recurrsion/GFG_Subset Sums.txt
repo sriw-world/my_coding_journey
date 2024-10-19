@@ -1,0 +1,19 @@
+class Solution:
+	def subsetSums(self, arr, n):
+		# code here
+		
+		def sum_subset(index,s):
+		    if index == n:
+		        out.append(s)
+		        return
+		    
+		    sum_subset(index+1,s+arr[index])
+		    sum_subset(index+1,s)
+		    
+		    
+        out = []
+        s = 0
+        index = 0
+        
+        sum_subset(index,s)
+        return out
