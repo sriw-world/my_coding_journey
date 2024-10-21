@@ -1,0 +1,5 @@
+class Solution:
+	def setBit(self, n):
+		# code here
+		N+1 set the 1st unset bit to 1
+        return n | (n+1)

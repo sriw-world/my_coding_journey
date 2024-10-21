@@ -1,0 +1,10 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        xor = 0
+        for no in nums:
+            xor = xor ^ no
+
+        return xor
+        
+        
+        
