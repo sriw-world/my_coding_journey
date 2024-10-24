@@ -5,3 +5,24 @@ class Solution:
             l += [i+[ch] for i in l]
         return l
         
+	
+T(0) = o(2^n)
+S(o) = 	o(2^n)
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def subset(index,ds,sums):
+            if index == len(nums):
+                out.append(ds[:])
+                return
+			#include the no
+            sums += nums[index]
+            ds.append(nums[index])
+            subset(index+1,ds,sums)
+			#exclude the no
+            ds.pop()
+            sums -= nums[index]
+            subset(index+1,ds,sums)
+
+        out = []
+        subset(0,[],0)
+        return out

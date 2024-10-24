@@ -1,0 +1,19 @@
+class Solution:
+    def sieve(self):
+        MAXN = 190032
+        self.spf = [1] * (MAXN + 1)
+        self.spf[0] = 0
+        for i in range(2,MAXN+1):
+            if self.spf[i] == 1:
+                for j in range(i,MAXN+1,i):
+                    if self.spf[j] == 1:
+                        self.spf[j] = i
+
+        
+    def findPrimeFactors(self, N):
+
+        l = []
+        while N!= 1:
+            l.append(self.spf[N])
+            N = N//self.spf[N]
+        return l

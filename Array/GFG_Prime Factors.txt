@@ -1,0 +1,14 @@
+class Solution:
+	def AllPrimeFactors(self, N):
+		# Code here
+		l = []
+		for no in range(2,N+1):
+		    if N% no == 0:
+		        l.append(no)
+		        while N%no == 0:
+		            N = N/no
+            if N <= 1:
+                break
+            
+        #print(l)
+        return l
