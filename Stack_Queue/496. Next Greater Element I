@@ -1,0 +1,18 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        l = []
+        d = {}
+        l.append(nums2[0])
+        for i in range(1,len(nums2)):
+            while len(l) > 0 and l[-1] < nums2[i]:
+                d[l[-1]] = nums2[i]
+                l.pop()
+            l.append(nums2[i])
+        while l:
+            d[l.pop()] = -1
+        for no in nums1:
+            l.append(d[no])
+        return l
+            
+T(O) = O(n+m)
+S(O) = O(n+m)
