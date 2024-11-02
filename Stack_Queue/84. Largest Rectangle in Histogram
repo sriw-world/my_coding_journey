@@ -1,0 +1,67 @@
+O(n^2)
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        
+        curr_area,mx_area = float('-inf'),float('-inf')
+        for index,ht in enumerate(heights):
+            left = index - 1
+            right = index + 1
+			#iterate left side with conditon left height greater than current height to cal width
+            while left > -1 and heights[left] >= ht:
+                left -= 1
+			#iterate right side with conditon right height greater than current height to cal width
+            while right < len(heights) and heights[right] >= ht:
+                right += 1
+            curr_area = (right-left -1) * ht
+            mx_area = max(curr_area,mx_area)
+
+        return mx_area
+		
+		
+		
+O(n)
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        def prevsmaller(heights):
+            ps = []
+            st = []
+ 
+            for i in range(len(heights)):
+                while st != [] and heights[st[-1]] >= heights[i]:
+                    st.pop()
+                    
+                if st == []:
+                    ps.append(-1)
+                else:
+                    ps.append(st[-1])
+                st.append(i)
+
+            return ps
+        
+        def nextsmaller(heights):
+            ns = []
+            st = []
+
+            for i in range(len(heights)-1,-1,-1):
+                while st != [] and heights[st[-1]] >= heights[i]:
+                    st.pop()
+                    
+                if st == []:
+                    ns.append(len(heights))
+                else:
+                    ns.append(st[-1])
+                st.append(i)
+
+            return ns[::-1]
+
+
+        ps = prevsmaller(heights)
+        ns = nextsmaller(heights)
+        max_area,curr_area = float('-inf'),float('-inf')
+        for index,ht in enumerate(heights):
+            curr_area = (ns[index] - ps[index] - 1)*ht
+            max_area = max(curr_area,max_area)
+        return max_area
+        
+            
