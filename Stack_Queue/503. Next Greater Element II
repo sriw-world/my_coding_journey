@@ -12,3 +12,4 @@ class Solution:
                 ans[st.pop()] = num
         return ans
 
+n

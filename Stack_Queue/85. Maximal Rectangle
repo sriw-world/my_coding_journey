@@ -1,0 +1,65 @@
+class Solution:
+    def prevsmaller(self,heights):
+        ps = []
+        st = []
+
+        for i in range(len(heights)):
+            while st != [] and heights[st[-1]] >= heights[i]:
+                st.pop()
+                
+            if st == []:
+                ps.append(-1)
+            else:
+                ps.append(st[-1])
+            st.append(i)
+
+        return ps
+    
+    def nextsmaller(self,heights):
+        ns = []
+        st = []
+
+        for i in range(len(heights)-1,-1,-1):
+            while st != [] and heights[st[-1]] >= heights[i]:
+                st.pop()
+                
+            if st == []:
+                ns.append(len(heights))
+            else:
+                ns.append(st[-1])
+            st.append(i)
+
+        return ns[::-1]
+
+    
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        
+        ps = self.prevsmaller(heights)
+        ns = self.nextsmaller(heights)
+        max_area,curr_area = float('-inf'),float('-inf')
+        for index,ht in enumerate(heights):
+            curr_area = (ns[index] - ps[index] - 1)*ht
+            max_area = max(curr_area,max_area)
+        return max_area
+    
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        max_area = float('-inf')
+        current_row = matrix[0]
+        current_row = list(map(int, current_row))
+        currrow_area = self.largestRectangleArea(current_row)
+        print(current_row)
+        max_area = max(max_area,currrow_area)
+
+        for row in matrix[1:]:
+            for index,val in enumerate(row):
+                if int(val) != 0:
+                    current_row[index] += int(val)
+                else:
+                    current_row[index] = 0
+
+            print(current_row)
+            currrow_area = self.largestRectangleArea(current_row)
+            max_area = max(max_area,currrow_area)
+
+        return max_area
+
