@@ -1,0 +1,25 @@
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        l = 0
+        m = 0
+        odd = 0
+        cnt = 0
+        for r in range(len(nums)):
+            if nums[r] % 2 == 1:
+                odd += 1
+            
+            while odd > k:
+                if nums[l] % 2 == 1:
+                    odd -= 1
+                l += 1
+                m = l
+
+            if odd == k:
+				# to count the no pf even ele 
+                while nums[m] % 2 == 0:
+                    m += 1
+                cnt += (m-l) + 1
+            
+        return cnt
+
+        

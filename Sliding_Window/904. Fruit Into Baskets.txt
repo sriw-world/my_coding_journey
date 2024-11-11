@@ -1,0 +1,19 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+
+        distinctf = {}
+        l = 0
+        maxlen = 0
+        for r in range(len(fruits)):
+            distinctf[fruits[r]] = distinctf.get(fruits[r],0) + 1
+
+            while len(distinctf) > 2:
+                distinctf[fruits[l]] -= 1
+                if distinctf[fruits[l]] == 0:
+                    del distinctf[fruits[l]]
+                l += 1
+
+            maxlen = max(maxlen,r-l+1)
+            print(l,r,maxlen,distinctf)
+        return maxlen 
+        

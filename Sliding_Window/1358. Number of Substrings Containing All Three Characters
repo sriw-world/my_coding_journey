@@ -1,0 +1,15 @@
+class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        d={'a':0,'b':0,'c':0}
+        l = 0
+        ct = 0
+        for r in range(len(s)):
+            d[s[r]] = d.get(s[r],0) + 1
+            while (d['a'] >= 1 and d['b'] >= 1 and d['c'] >= 1) :
+                ct += len(s) - r
+                d[s[l]] -= 1
+                l += 1
+        return ct
+
+
+        
